@@ -38,13 +38,13 @@
 		56794DC52A9D683800AD5436 /* QRResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRResultViewController.swift; sourceTree = "<group>"; };
 		56794DCB2A9D6DFD00AD5436 /* QRResultContentView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QRResultContentView.storyboard; sourceTree = "<group>"; };
 		56794DD12A9DA08A00AD5436 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
-		658B87D11BF01D9400EF2B45 /* KiwiRailBeaconScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KiwiRailBeaconScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		658B87D11BF01D9400EF2B45 /* KRBeacon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KRBeacon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		658B87D41BF01D9400EF2B45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		658B87DB1BF01D9400EF2B45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		658B87DE1BF01D9400EF2B45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		658B87E01BF01D9400EF2B45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		658B87E51BF01D9400EF2B45 /* KiwiRailBeaconScannerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiwiRailBeaconScannerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		658B87F01BF01D9400EF2B45 /* KiwiRailBeaconScannerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiwiRailBeaconScannerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		658B87E51BF01D9400EF2B45 /* KRBeaconTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KRBeaconTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		658B87F01BF01D9400EF2B45 /* KRBeaconUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KRBeaconUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,9 +100,9 @@
 		658B87D21BF01D9400EF2B45 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				658B87D11BF01D9400EF2B45 /* KiwiRailBeaconScanner.app */,
-				658B87E51BF01D9400EF2B45 /* KiwiRailBeaconScannerTests.xctest */,
-				658B87F01BF01D9400EF2B45 /* KiwiRailBeaconScannerUITests.xctest */,
+				658B87D11BF01D9400EF2B45 /* KRBeacon.app */,
+				658B87E51BF01D9400EF2B45 /* KRBeaconTests.xctest */,
+				658B87F01BF01D9400EF2B45 /* KRBeaconUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -124,9 +124,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		658B87D01BF01D9400EF2B45 /* KiwiRailBeaconScanner */ = {
+		658B87D01BF01D9400EF2B45 /* KRBeacon */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 658B87F91BF01D9400EF2B45 /* Build configuration list for PBXNativeTarget "KiwiRailBeaconScanner" */;
+			buildConfigurationList = 658B87F91BF01D9400EF2B45 /* Build configuration list for PBXNativeTarget "KRBeacon" */;
 			buildPhases = (
 				658B87CD1BF01D9400EF2B45 /* Sources */,
 				658B87CE1BF01D9400EF2B45 /* Frameworks */,
@@ -136,14 +136,14 @@
 			);
 			dependencies = (
 			);
-			name = KiwiRailBeaconScanner;
+			name = KRBeacon;
 			productName = MiniOrder;
-			productReference = 658B87D11BF01D9400EF2B45 /* KiwiRailBeaconScanner.app */;
+			productReference = 658B87D11BF01D9400EF2B45 /* KRBeacon.app */;
 			productType = "com.apple.product-type.application";
 		};
-		658B87E41BF01D9400EF2B45 /* KiwiRailBeaconScannerTests */ = {
+		658B87E41BF01D9400EF2B45 /* KRBeaconTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 658B87FC1BF01D9400EF2B45 /* Build configuration list for PBXNativeTarget "KiwiRailBeaconScannerTests" */;
+			buildConfigurationList = 658B87FC1BF01D9400EF2B45 /* Build configuration list for PBXNativeTarget "KRBeaconTests" */;
 			buildPhases = (
 				658B87E11BF01D9400EF2B45 /* Sources */,
 				658B87E21BF01D9400EF2B45 /* Frameworks */,
@@ -154,14 +154,14 @@
 			dependencies = (
 				658B87E71BF01D9400EF2B45 /* PBXTargetDependency */,
 			);
-			name = KiwiRailBeaconScannerTests;
+			name = KRBeaconTests;
 			productName = MiniOrderTests;
-			productReference = 658B87E51BF01D9400EF2B45 /* KiwiRailBeaconScannerTests.xctest */;
+			productReference = 658B87E51BF01D9400EF2B45 /* KRBeaconTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		658B87EF1BF01D9400EF2B45 /* KiwiRailBeaconScannerUITests */ = {
+		658B87EF1BF01D9400EF2B45 /* KRBeaconUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 658B87FF1BF01D9400EF2B45 /* Build configuration list for PBXNativeTarget "KiwiRailBeaconScannerUITests" */;
+			buildConfigurationList = 658B87FF1BF01D9400EF2B45 /* Build configuration list for PBXNativeTarget "KRBeaconUITests" */;
 			buildPhases = (
 				658B87EC1BF01D9400EF2B45 /* Sources */,
 				658B87ED1BF01D9400EF2B45 /* Frameworks */,
@@ -172,9 +172,9 @@
 			dependencies = (
 				658B87F21BF01D9400EF2B45 /* PBXTargetDependency */,
 			);
-			name = KiwiRailBeaconScannerUITests;
+			name = KRBeaconUITests;
 			productName = MiniOrderUITests;
-			productReference = 658B87F01BF01D9400EF2B45 /* KiwiRailBeaconScannerUITests.xctest */;
+			productReference = 658B87F01BF01D9400EF2B45 /* KRBeaconUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -202,7 +202,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 658B87CC1BF01D9400EF2B45 /* Build configuration list for PBXProject "KiwiRailBeaconScanner" */;
+			buildConfigurationList = 658B87CC1BF01D9400EF2B45 /* Build configuration list for PBXProject "KRBeacon" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -215,9 +215,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				658B87D01BF01D9400EF2B45 /* KiwiRailBeaconScanner */,
-				658B87E41BF01D9400EF2B45 /* KiwiRailBeaconScannerTests */,
-				658B87EF1BF01D9400EF2B45 /* KiwiRailBeaconScannerUITests */,
+				658B87D01BF01D9400EF2B45 /* KRBeacon */,
+				658B87E41BF01D9400EF2B45 /* KRBeaconTests */,
+				658B87EF1BF01D9400EF2B45 /* KRBeaconUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -280,12 +280,12 @@
 /* Begin PBXTargetDependency section */
 		658B87E71BF01D9400EF2B45 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 658B87D01BF01D9400EF2B45 /* KiwiRailBeaconScanner */;
+			target = 658B87D01BF01D9400EF2B45 /* KRBeacon */;
 			targetProxy = 658B87E61BF01D9400EF2B45 /* PBXContainerItemProxy */;
 		};
 		658B87F21BF01D9400EF2B45 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 658B87D01BF01D9400EF2B45 /* KiwiRailBeaconScanner */;
+			target = 658B87D01BF01D9400EF2B45 /* KRBeacon */;
 			targetProxy = 658B87F11BF01D9400EF2B45 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -419,9 +419,9 @@
 				DEVELOPMENT_TEAM = T387QM3967;
 				INFOPLIST_FILE = KiwiRailBeaconScanner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = smudge.KiwiRailBeaconScanner;
+				PRODUCT_BUNDLE_IDENTIFIER = smudge.KRBeacon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "MiniOrder-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "KiwiRailBeaconScanner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -436,9 +436,9 @@
 				DEVELOPMENT_TEAM = T387QM3967;
 				INFOPLIST_FILE = KiwiRailBeaconScanner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = smudge.KiwiRailBeaconScanner;
+				PRODUCT_BUNDLE_IDENTIFIER = smudge.KRBeacon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "MiniOrder-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "KiwiRailBeaconScanner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -451,7 +451,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = smudge.MiniOrderTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KiwiRailBeaconScanner.app/KiwiRailBeaconScanner";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KRBeacon.app/KRBeacon";
 			};
 			name = Debug;
 		};
@@ -463,7 +463,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = smudge.MiniOrderTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KiwiRailBeaconScanner.app/KiwiRailBeaconScanner";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KRBeacon.app/KRBeacon";
 			};
 			name = Release;
 		};
@@ -494,7 +494,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		658B87CC1BF01D9400EF2B45 /* Build configuration list for PBXProject "KiwiRailBeaconScanner" */ = {
+		658B87CC1BF01D9400EF2B45 /* Build configuration list for PBXProject "KRBeacon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				658B87F71BF01D9400EF2B45 /* Debug */,
@@ -503,7 +503,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		658B87F91BF01D9400EF2B45 /* Build configuration list for PBXNativeTarget "KiwiRailBeaconScanner" */ = {
+		658B87F91BF01D9400EF2B45 /* Build configuration list for PBXNativeTarget "KRBeacon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				658B87FA1BF01D9400EF2B45 /* Debug */,
@@ -512,7 +512,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		658B87FC1BF01D9400EF2B45 /* Build configuration list for PBXNativeTarget "KiwiRailBeaconScannerTests" */ = {
+		658B87FC1BF01D9400EF2B45 /* Build configuration list for PBXNativeTarget "KRBeaconTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				658B87FD1BF01D9400EF2B45 /* Debug */,
@@ -521,7 +521,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		658B87FF1BF01D9400EF2B45 /* Build configuration list for PBXNativeTarget "KiwiRailBeaconScannerUITests" */ = {
+		658B87FF1BF01D9400EF2B45 /* Build configuration list for PBXNativeTarget "KRBeaconUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				658B88001BF01D9400EF2B45 /* Debug */,
