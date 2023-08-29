@@ -1,0 +1,25 @@
+{
+  "historicalBeacons": [
+    {
+      "id": 1,
+      "imageName": "950063.png",
+      "displayName": "ECA6EA334E9733F361E2",
+      "voltage": "3102",
+      "date": "25-08-23"
+    },
+    {
+      "id": 2,
+      "imageName": "950063.png",
+      "displayName": "HCA6EA334E9733F361E23",
+      "voltage": "3112",
+      "date": "23-08-23"
+    },
+    {
+      "id": 3,
+      "imageName": "950063.png",
+      "displayName": "FCA6EA334E9733F361E4",
+      "voltage": "3099",
+      "date": "22-08-23"
+    }
+  ]
+}

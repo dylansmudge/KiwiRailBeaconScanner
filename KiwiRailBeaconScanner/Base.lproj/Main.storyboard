@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VGb-cA-3x7">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22129"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="7fN-dC-lIJ">
+            <objects>
+                <viewController id="5ze-RS-k6l" customClass="HomeViewController" customModule="KiwiRail2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IYX-Vb-bge"/>
+                        <viewControllerLayoutGuide type="bottom" id="Q3z-64-LrE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZDu-nj-U4q">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="og-image" translatesAutoresizingMaskIntoConstraints="NO" id="4E5-ib-mPM">
+                                <rect key="frame" x="-8" y="34" width="390" height="308"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="V6v-fQ-Srn">
+                                <rect key="frame" x="102" y="389" width="170" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <buttonConfiguration key="configuration" style="filled" image="qrcode" catalog="system" title="QR Code Scan">
+                                    <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="VGb-cA-3x7" kind="show" id="iQA-0k-Qf0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KPi-xn-HFO">
+                                <rect key="frame" x="102" y="449" width="170" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="clock" catalog="system" title="Beacon History"/>
+                                <connections>
+                                    <segue destination="4UZ-LD-kyx" kind="show" id="1UY-Sv-1xg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WcX-8b-D6r">
+                                <rect key="frame" x="102" y="329" width="170" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="waveform.and.magnifyingglass" catalog="system" title="Bluetooth Scan"/>
+                                <connections>
+                                    <segue destination="CTM-wY-kKB" kind="show" id="saO-pB-jde"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Jtw-S5-Gjb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D17-Ac-j7j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3033.4883720930234" y="-32.188841201716741"/>
+        </scene>
+        <!--QR Code Scan-->
+        <scene sceneID="1LI-JH-T2i">
+            <objects>
+                <viewController title="QR Code Scan" id="4N3-Aq-6Wn" customClass="CameraViewController" customModule="KiwiRail2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="g3Q-8B-Xba"/>
+                        <viewControllerLayoutGuide type="bottom" id="Gjy-8l-lka"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="C9X-bb-rMK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="QR Code Scanner" id="FbQ-jA-JUJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dnc-vb-aZ3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5228" y="-669.45812807881771"/>
+        </scene>
+        <!--Beacon History View Controller-->
+        <scene sceneID="2dO-tW-tyF">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pg9-0X-rGc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <collectionViewController id="4UZ-LD-kyx" customClass="BeaconHistoryViewController" customModule="KiwiRail2" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="8j7-YL-pdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eLK-v4-Qbg">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BeaconHistory" id="HRf-ru-6wZ" customClass="BeaconHistoryViewCell" customModule="KiwiRail2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Timestamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cD5-Sk-Ncz">
+                                            <rect key="frame" x="20" y="20" width="100" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Voltage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zsr-S9-gF2">
+                                            <rect key="frame" x="20" y="50" width="100" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </view>
+                                <color key="backgroundColor" systemColor="systemGrayColor"/>
+                                <connections>
+                                    <outlet property="timestampLabel" destination="cD5-Sk-Ncz" id="r1j-GB-Led"/>
+                                    <outlet property="voltageLabel" destination="zsr-S9-gF2" id="wte-er-ukP"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="4UZ-LD-kyx" id="osh-tS-odG"/>
+                            <outlet property="delegate" destination="4UZ-LD-kyx" id="bo0-cy-tlP"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="F5c-SX-3Lb"/>
+                </collectionViewController>
+            </objects>
+            <point key="canvasLocation" x="4286" y="880"/>
+        </scene>
+        <!--Scanning for Beacons..-->
+        <scene sceneID="y1r-n3-NFh">
+            <objects>
+                <viewController id="CTM-wY-kKB" customClass="BluetoothViewController" customModule="KiwiRail2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8qV-Ca-caD"/>
+                        <viewControllerLayoutGuide type="bottom" id="RUO-hk-DHu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="roJ-OF-oJQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Scanning for Beacons.." id="yXu-0k-4Em"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AMP-cf-rA3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5828" y="147.78325123152709"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="1qy-Ut-pgY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6hU-L6-nn3" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EeT-uX-lxX">
+                        <rect key="frame" x="0.0" y="50" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5ze-RS-k6l" kind="relationship" relationship="rootViewController" id="j4K-iL-xtO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DZc-W6-HdX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2134.8837209302324" y="-32.188841201716741"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="sKn-2P-3mW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VGb-cA-3x7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="qxE-Dn-YSH"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="H9U-RQ-yCX">
+                        <rect key="frame" x="0.0" y="50" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4N3-Aq-6Wn" kind="relationship" relationship="rootViewController" id="rPF-pv-bur"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="01e-Th-gKc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4285.6000000000004" y="-669.45812807881771"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="clock" catalog="system" width="128" height="123"/>
+        <image name="og-image" width="1200" height="630"/>
+        <image name="qrcode" catalog="system" width="128" height="114"/>
+        <image name="waveform.and.magnifyingglass" catalog="system" width="128" height="115"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
