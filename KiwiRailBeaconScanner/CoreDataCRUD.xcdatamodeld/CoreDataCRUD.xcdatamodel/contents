@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22221.1" systemVersion="23A5328b" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Beacon" representedClassName=".Beacon" syncable="YES">
+        <attribute name="instance" optional="YES" attributeType="String"/>
+        <attribute name="namespace" attributeType="String"/>
+        <attribute name="temperature" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="time" optional="YES" attributeType="String"/>
+        <attribute name="voltage" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+</model>

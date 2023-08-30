@@ -12,7 +12,7 @@
         <!--Result View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="QRResultView" id="Y6W-OH-hqX" customClass="QRResultViewController" customModule="KiwiRail2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QRResultView" id="Y6W-OH-hqX" customClass="QRResultViewController" customModule="KRBeacon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -87,17 +87,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrT-Ey-fGE">
-                                <rect key="frame" x="136" y="387" width="120" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrT-Ey-fGE">
+                                <rect key="frame" x="116" y="445" width="160" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Save"/>
+                                <buttonConfiguration key="configuration" style="filled" image="square.and.arrow.down" catalog="system" title="Save"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcz-qR-ZY3">
-                                <rect key="frame" x="136" y="430" width="120" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11v-ia-ywG">
+                                <rect key="frame" x="116" y="402" width="160" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Report Fault">
+                                <buttonConfiguration key="configuration" style="filled" image="arrow.clockwise.circle" catalog="system" title="Refresh"/>
+                                <connections>
+                                    <action selector="refreshButtonSelected:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="r1g-8y-swu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcz-qR-ZY3">
+                                <rect key="frame" x="116" y="488" width="160" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="exclamationmark.triangle" catalog="system" title="Report Fault">
                                     <color key="baseBackgroundColor" systemColor="systemRedColor"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -113,6 +122,7 @@
                         <outlet property="instanceLabel" destination="cMA-v8-7k8" id="QPs-v1-6Oh"/>
                         <outlet property="manuallyAddButton" destination="vrT-Ey-fGE" id="fJQ-q9-Jw0"/>
                         <outlet property="nameSpaceLabel" destination="ThF-Ng-mAH" id="q4Y-SX-bQn"/>
+                        <outlet property="refreshButton" destination="11v-ia-ywG" id="YcY-NX-IcF"/>
                         <outlet property="reportFaultButton" destination="fcz-qR-ZY3" id="cdd-IA-GM4"/>
                         <outlet property="temperatureLabel" destination="6i8-ji-pUg" id="x2a-Tn-mgA"/>
                         <outlet property="timeLabel" destination="xBr-11-gYZ" id="iau-vh-C6K"/>
@@ -126,7 +136,7 @@
         <!--Scan For Beacons-->
         <scene sceneID="VK7-74-yyz">
             <objects>
-                <viewController id="Emo-J3-gkc" customClass="CameraViewController" customModule="KiwiRail2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Emo-J3-gkc" customClass="CameraViewController" customModule="KRBeacon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="M1L-az-Omg">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -177,6 +187,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.clockwise.circle" catalog="system" width="128" height="123"/>
+        <image name="exclamationmark.triangle" catalog="system" width="128" height="109"/>
+        <image name="square.and.arrow.down" catalog="system" width="112" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

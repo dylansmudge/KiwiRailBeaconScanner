@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		56405ECD2A9833AF006DE6A3 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56405ECC2A9833AF006DE6A3 /* CameraViewController.swift */; };
+		5644ED582A9EB3F900DB83A5 /* CoreDataCRUD.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5644ED562A9EB3F900DB83A5 /* CoreDataCRUD.xcdatamodeld */; };
+		5644ED5B2A9EB4C900DB83A5 /* Beacon+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5644ED592A9EB4C800DB83A5 /* Beacon+CoreDataClass.swift */; };
+		5644ED5C2A9EB4C900DB83A5 /* Beacon+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5644ED5A2A9EB4C800DB83A5 /* Beacon+CoreDataProperties.swift */; };
 		56794DC62A9D683800AD5436 /* QRResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56794DC52A9D683800AD5436 /* QRResultViewController.swift */; };
 		56794DCC2A9D6DFD00AD5436 /* QRResultContentView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56794DCB2A9D6DFD00AD5436 /* QRResultContentView.storyboard */; };
 		56794DD22A9DA08A00AD5436 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56794DD12A9DA08A00AD5436 /* BluetoothManager.swift */; };
@@ -35,6 +38,9 @@
 
 /* Begin PBXFileReference section */
 		56405ECC2A9833AF006DE6A3 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		5644ED572A9EB3F900DB83A5 /* CoreDataCRUD.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataCRUD.xcdatamodel; sourceTree = "<group>"; };
+		5644ED592A9EB4C800DB83A5 /* Beacon+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Beacon+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5644ED5A2A9EB4C800DB83A5 /* Beacon+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Beacon+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		56794DC52A9D683800AD5436 /* QRResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRResultViewController.swift; sourceTree = "<group>"; };
 		56794DCB2A9D6DFD00AD5436 /* QRResultContentView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QRResultContentView.storyboard; sourceTree = "<group>"; };
 		56794DD12A9DA08A00AD5436 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
@@ -72,6 +78,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5644ED5D2A9EB4D600DB83A5 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				5644ED5A2A9EB4C800DB83A5 /* Beacon+CoreDataProperties.swift */,
+				5644ED592A9EB4C800DB83A5 /* Beacon+CoreDataClass.swift */,
+			);
+			name = CoreData;
+			path = ../CoreData;
+			sourceTree = "<group>";
+		};
 		56794DC72A9D68C500AD5436 /* QRCode */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,12 +126,14 @@
 		658B87D31BF01D9400EF2B45 /* KiwiRailBeaconScanner */ = {
 			isa = PBXGroup;
 			children = (
+				5644ED5D2A9EB4D600DB83A5 /* CoreData */,
 				56794DC82A9D68E300AD5436 /* Bluetooth */,
 				56794DC72A9D68C500AD5436 /* QRCode */,
 				658B87D41BF01D9400EF2B45 /* AppDelegate.swift */,
 				56794DCB2A9D6DFD00AD5436 /* QRResultContentView.storyboard */,
 				658B87DB1BF01D9400EF2B45 /* Assets.xcassets */,
 				658B87DD1BF01D9400EF2B45 /* LaunchScreen.storyboard */,
+				5644ED562A9EB3F900DB83A5 /* CoreDataCRUD.xcdatamodeld */,
 				658B87E01BF01D9400EF2B45 /* Info.plist */,
 			);
 			path = KiwiRailBeaconScanner;
@@ -254,10 +272,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5644ED5C2A9EB4C900DB83A5 /* Beacon+CoreDataProperties.swift in Sources */,
 				56405ECD2A9833AF006DE6A3 /* CameraViewController.swift in Sources */,
 				56794DC62A9D683800AD5436 /* QRResultViewController.swift in Sources */,
+				5644ED582A9EB3F900DB83A5 /* CoreDataCRUD.xcdatamodeld in Sources */,
 				56794DD22A9DA08A00AD5436 /* BluetoothManager.swift in Sources */,
 				658B87D51BF01D9400EF2B45 /* AppDelegate.swift in Sources */,
+				5644ED5B2A9EB4C900DB83A5 /* Beacon+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +552,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5644ED562A9EB3F900DB83A5 /* CoreDataCRUD.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5644ED572A9EB3F900DB83A5 /* CoreDataCRUD.xcdatamodel */,
+			);
+			currentVersion = 5644ED572A9EB3F900DB83A5 /* CoreDataCRUD.xcdatamodel */;
+			path = CoreDataCRUD.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 658B87C91BF01D9400EF2B45 /* Project object */;
 }

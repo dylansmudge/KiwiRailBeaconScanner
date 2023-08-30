@@ -15,6 +15,7 @@ class QRResultViewController: UIViewController, CBCentralManagerDelegate {
     //UI elements
     @IBOutlet var reportFaultButton: UIButton!
     @IBOutlet var manuallyAddButton: UIButton!
+    @IBOutlet var refreshButton: UIButton!
     //Labels
     @IBOutlet weak var nameSpaceLabel: UILabel!
     @IBOutlet weak var instanceLabel: UILabel!
@@ -29,6 +30,7 @@ class QRResultViewController: UIViewController, CBCentralManagerDelegate {
     var temp = ""
     var nameSpace = ""
     var timestamp: Date?
+    var timeOutInterval = 20.0
     
     
     override func viewDidLoad() {
@@ -46,8 +48,19 @@ class QRResultViewController: UIViewController, CBCentralManagerDelegate {
                 instanceLabel.text = "No Instance"
             }
         }
-        view.backgroundColor = .white  // Set the background color to white
+       // view.backgroundColor = .white  // Set the background color to white
     }
+    
+    @IBAction func refreshButtonSelected(_ sender: UIButton) {
+        shouldPresentAlert = true
+        sender.tintColor = .gray
+
+        // After 5 seconds, revert the color back
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            sender.tintColor = .systemBlue
+        }
+    }
+    
     
     @IBAction func reportFaultButtonTapped(_ sender: UIButton) {
         let alertController = UIAlertController(title: "Report Fault", message: "Please select the type of fault:", preferredStyle: .actionSheet)
@@ -156,71 +169,96 @@ class QRResultViewController: UIViewController, CBCentralManagerDelegate {
                     default:
                         print("Trying to scan for beacons...")
                     }
+
                     let rssiValue = RSSI.intValue
                     let timeStamp = generateTimestamp()
                     if !isAlertPresented && shouldPresentAlert {
                         isAlertPresented = true // Set the flag to indicate an alert is being presented
-                        let alertController = UIAlertController(title: "Bluetooth Device Detected",
-                                                                message:
-                                                                    "Namespace: \(nameSpace) \n" +
-                                                                "Voltage: \(volt) mV \n" +
-                                                                "Temperature: \(temp) C \n" +
-                                                                "Signal Strength:\(rssiValue) (\(determineSignalStrength(fromRSSI: rssiValue))) \n" +
-                                                                "Time: \(timeStamp)",
-                                                                preferredStyle: .alert)
-                        let okAction = UIAlertAction(title: "Add Data", style: .default) { _ in
-                            self.isAlertPresented = false // Reset the flag when the alert is dismissed
-                            self.voltageLabel.text = "\(self.volt) mV"
-                            self.temperatureLabel.text = "\(self.temp) C"
-                            self.timeLabel.text = timeStamp
-                            self.shouldPresentAlert = false
-                        }
-                        let refreshAction = UIAlertAction(title: "Refresh", style: .default) { _ in
-                            self.isAlertPresented = false // Reset the flag when the alert is dismissed
-                        }
-                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-                            self.isAlertPresented = false // Reset the flag when the alert is dismissed
-                            self.shouldPresentAlert = false
-                        }
-                        alertController.addAction(okAction)
-                        alertController.addAction(refreshAction)
-                        alertController.addAction(cancelAction)
                         
-                        DispatchQueue.main.async {
-                            self.present(alertController, animated: true, completion: nil)
+                        Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { [weak self] timer in
+                            guard let self = self else { return }
+                            let alertController = UIAlertController(title: "Beacon Detected",
+                                                                    message:
+                                                                        "Namespace: \(nameSpace) \n" +
+                                                                    "Voltage: \(volt) mV \n" +
+                                                                    "Temperature: \(temp) C \n" +
+                                                                    "Signal Strength:\(rssiValue) (\(determineSignalStrength(fromRSSI: rssiValue))) \n" +
+                                                                    "Time: \(timeStamp)",
+                                                                    preferredStyle: .alert)
+                            let okAction = UIAlertAction(title: "Add Data", style: .default) { _ in
+                                self.isAlertPresented = false // Reset the flag when the alert is dismissed
+                                self.voltageLabel.text = "\(self.volt) mV"
+                                self.temperatureLabel.text = "\(self.temp) C"
+                                self.timeLabel.text = timeStamp
+                                self.shouldPresentAlert = false
+                            }
+                            let refreshAction = UIAlertAction(title: "Refresh", style: .default) { _ in
+                                self.isAlertPresented = false // Reset the flag when the alert is dismissed
+                            }
+                            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                                self.isAlertPresented = false // Reset the flag when the alert is dismissed
+                                self.shouldPresentAlert = false
+                            }
+                            alertController.addAction(okAction)
+                            alertController.addAction(refreshAction)
+                            alertController.addAction(cancelAction)
+                            
+                            DispatchQueue.main.async {
+                                self.present(alertController, animated: true) {
+                                    timer.invalidate() // Invalidate the timer to prevent repeated presentation
+                                }
+                            }
+                            
+                            if !shouldPresentAlert && isAlertPresented
+                            {
+                                //No Signal alert
+                                Timer.scheduledTimer(withTimeInterval: timeOutInterval, repeats: false) { [weak self] timer in
+                                     guard let self = self else { return }
+
+                                     let noSignalAlertController = UIAlertController(title: "No Bluetooth Signal Detected",
+                                                                                   message:
+                                                                                "No device detected. Please ensure your bluetooth is enabled. " +
+                                                                                "You can report a faulty device, or manually add the device without the telemetry data.",
+                                                                                   preferredStyle: .alert)
+                                     let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                                         // Handle OK action if needed
+                                     }
+                                     noSignalAlertController.addAction(okAction)
+
+                                     self.present(noSignalAlertController, animated: true) {
+                                         timer.invalidate() // Invalidate the timer to prevent repeated presentation
+                                     }
+                                 }
+                            }
                         }
-                        print(advertisementData)
-                        
                     }
                 }
             }
+            
+        }
+        
+        func parseEddyStoneUID(_ data: Data) {
+            let byteArray = [UInt8](data) // Convert Data to [UInt8] array
+            let combinedHexString = combineArrayValuesToString(from: byteArray, startIndex: 1, endIndex: 10)
+            nameSpace = combinedHexString
+        }
+        
+        func combineArrayValuesToString(from data: [UInt8], startIndex: Int, endIndex: Int) -> String {
+            let subArray = Array(data[startIndex..<endIndex+1])
+            let hexString = subArray.map { String(format: "%02X", $0) }.joined(separator: "")
+            return hexString
+        }
+        
+        func parseEddyStoneURL(_ data: Data) {
+            let url = data[2]
+        }
+        
+        func parseEddystoneTLM(_ data: Data) {
+            let voltage = UInt16(data[2]) << 8 + UInt16(data[3])
+            let temperature = data[4]
+            volt = String(voltage)
+            temp = String(temperature)
         }
         
     }
-    
-    func parseEddyStoneUID(_ data: Data) {
-        let byteArray = [UInt8](data) // Convert Data to [UInt8] array
-        let combinedHexString = combineArrayValuesToString(from: byteArray, startIndex: 1, endIndex: 10)
-        nameSpace = combinedHexString
-    }
-    
-    func combineArrayValuesToString(from data: [UInt8], startIndex: Int, endIndex: Int) -> String {
-        let subArray = Array(data[startIndex..<endIndex+1])
-        let hexString = subArray.map { String(format: "%02X", $0) }.joined(separator: "")
-        return hexString
-    }
-    
-    func parseEddyStoneURL(_ data: Data) {
-        let url = data[2]
-        
-        print("URL: \(url)")
-    }
-    
-    func parseEddystoneTLM(_ data: Data) {
-        let voltage = UInt16(data[2]) << 8 + UInt16(data[3])
-        let temperature = data[4]
-        volt = String(voltage)
-        temp = String(temperature)
-    }
-    
 }
