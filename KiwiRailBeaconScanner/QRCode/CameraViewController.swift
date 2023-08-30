@@ -16,11 +16,65 @@ class CameraViewController: UIViewController,  AVCaptureMetadataOutputObjectsDel
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
     var timer: Timer?
     var qrCodeFrameView: UIView?
+    @IBOutlet var reportFaultButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupQRCodeScanner()
     }
+    
+
+    @IBAction func reportFaultButtonTapped(_ sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: "Report Fault", message: "Please select the type of fault:", preferredStyle: .actionSheet)
+        
+        let option1Action = UIAlertAction(title: "Cannot scan Beacon", style: .default) { _ in
+            // Handle Option 1 selection
+        }
+        alertController.addAction(option1Action)
+        
+        let option2Action = UIAlertAction(title: "Physical Damage to Beacon", style: .default) { _ in
+            // Handle Option 2 selection
+        }
+        alertController.addAction(option2Action)
+        
+        let option3Action = UIAlertAction(title: "Other", style: .default) { _ in
+            // Handle Option 3 selection
+            self.showReasonAlert()
+        }
+        alertController.addAction(option3Action)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        
+        present(alertController, animated: true, completion: nil)
+    }
+
+    
+    func showReasonAlert() {
+        let reasonAlert = UIAlertController(title: "Other Selected", message: "Please provide a reason:", preferredStyle: .alert)
+        
+        reasonAlert.addTextField { textField in
+            textField.placeholder = "Reason"
+        }
+        
+        let okayAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            if let reason = reasonAlert.textFields?.first?.text {
+                self?.handleOption3Selection(with: reason)
+            }
+        }
+        reasonAlert.addAction(okayAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        reasonAlert.addAction(cancelAction)
+        
+        present(reasonAlert, animated: true, completion: nil)
+    }
+    
+    func handleOption3Selection(with reason: String) {
+        // Handle Option 3 selection with the provided reason
+    }
+
     
     func setupQRCodeScanner() {
         captureSession = AVCaptureSession()
@@ -48,6 +102,7 @@ class CameraViewController: UIViewController,  AVCaptureMetadataOutputObjectsDel
         } else {
             return
         }
+
         
         let metadataOutput = AVCaptureMetadataOutput()
         
@@ -57,6 +112,35 @@ class CameraViewController: UIViewController,  AVCaptureMetadataOutputObjectsDel
             metadataOutput.metadataObjectTypes = [.qr]
         } else {
             return
+        }
+        guard let captureDevice = AVCaptureDevice.default(for: .video) else {
+            fatalError("No video capture device available.")
+        }
+        
+        captureSession.sessionPreset = .high // Configure the session preset
+        // 1
+        for vFormat in captureDevice.formats {
+
+            // 2
+            var ranges = vFormat.videoSupportedFrameRateRanges as [AVFrameRateRange]
+            var frameRates = ranges[0]
+
+            // 3
+            if frameRates.maxFrameRate == 240 {
+
+                // 4
+                do {
+                    try captureDevice.lockForConfiguration()
+                }
+                catch {
+                    return
+                }
+                captureDevice.activeFormat = vFormat as AVCaptureDevice.Format
+                captureDevice.activeVideoMinFrameDuration = frameRates.minFrameDuration
+                captureDevice.activeVideoMaxFrameDuration = frameRates.maxFrameDuration
+                captureDevice.unlockForConfiguration()
+                    
+            }
         }
         
         videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)

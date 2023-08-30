@@ -8,11 +8,12 @@
 
 import UIKit
 import CoreBluetooth
+import CoreData
 
-class QRResultViewController: UIViewController, CBCentralManagerDelegate {
+class QRResultViewController: UIViewController, CBCentralManagerDelegate, NSFetchedResultsControllerDelegate {
     var qrCodeValue: String?
     
-    //UI elements
+    //Buttons
     @IBOutlet var reportFaultButton: UIButton!
     @IBOutlet var manuallyAddButton: UIButton!
     @IBOutlet var refreshButton: UIButton!
@@ -22,25 +23,33 @@ class QRResultViewController: UIViewController, CBCentralManagerDelegate {
     @IBOutlet weak var voltageLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet var beaconView: UIView!
     
+    lazy var dataProvider: BeaconProvider = {
+        let managedContext = AppDelegate.sharedAppDelegate.coreDataStack.managedContext
+        let provider = BeaconProvider(with: managedContext, fetchedResultsControllerDelegate: self)
+        return provider
+    }()
+    
+    //Variables
     var shouldPresentAlert = true
     var centralManager: CBCentralManager!
     var isAlertPresented = false // Track if an alert is already displayed
+    var beaconDetected = false
     var volt = ""
     var temp = ""
     var nameSpace = ""
     var timestamp: Date?
-    var timeOutInterval = 20.0
+    var timeOutInterval = 1.0
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         centralManager = CBCentralManager(delegate: self, queue: nil)
-        
         if let qrCodeValue = qrCodeValue {
             let parts = qrCodeValue.components(separatedBy: "/")
             if parts.count >= 2 {
-                title = parts[0].uppercased()
+                title = "Scanning for Telemetry"
                 nameSpaceLabel.text = parts[0].uppercased()
                 instanceLabel.text = parts[1].uppercased()  // Display the second part in part2Label
             } else {
@@ -48,7 +57,6 @@ class QRResultViewController: UIViewController, CBCentralManagerDelegate {
                 instanceLabel.text = "No Instance"
             }
         }
-       // view.backgroundColor = .white  // Set the background color to white
     }
     
     @IBAction func refreshButtonSelected(_ sender: UIButton) {
@@ -56,7 +64,7 @@ class QRResultViewController: UIViewController, CBCentralManagerDelegate {
         sender.tintColor = .gray
 
         // After 5 seconds, revert the color back
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             sender.tintColor = .systemBlue
         }
     }
@@ -159,6 +167,7 @@ class QRResultViewController: UIViewController, CBCentralManagerDelegate {
             for (uuid, data) in serviceData {
                 let uuidString = uuid.uuidString.lowercased()
                 if uuidString == "feaa" {  // Eddystone UUID
+                    beaconDetected = true
                     switch data[0] {
                     case 0x00:
                         parseEddyStoneUID(data)
@@ -174,7 +183,6 @@ class QRResultViewController: UIViewController, CBCentralManagerDelegate {
                     let timeStamp = generateTimestamp()
                     if !isAlertPresented && shouldPresentAlert {
                         isAlertPresented = true // Set the flag to indicate an alert is being presented
-                        
                         Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { [weak self] timer in
                             guard let self = self else { return }
                             let alertController = UIAlertController(title: "Beacon Detected",
@@ -198,6 +206,8 @@ class QRResultViewController: UIViewController, CBCentralManagerDelegate {
                             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
                                 self.isAlertPresented = false // Reset the flag when the alert is dismissed
                                 self.shouldPresentAlert = false
+                                self.timeOutInterval = 20
+                                self.beaconDetected = false
                             }
                             alertController.addAction(okAction)
                             alertController.addAction(refreshAction)
@@ -208,29 +218,28 @@ class QRResultViewController: UIViewController, CBCentralManagerDelegate {
                                     timer.invalidate() // Invalidate the timer to prevent repeated presentation
                                 }
                             }
-                            
-                            if !shouldPresentAlert && isAlertPresented
-                            {
-                                //No Signal alert
-                                Timer.scheduledTimer(withTimeInterval: timeOutInterval, repeats: false) { [weak self] timer in
-                                     guard let self = self else { return }
-
-                                     let noSignalAlertController = UIAlertController(title: "No Bluetooth Signal Detected",
-                                                                                   message:
-                                                                                "No device detected. Please ensure your bluetooth is enabled. " +
-                                                                                "You can report a faulty device, or manually add the device without the telemetry data.",
-                                                                                   preferredStyle: .alert)
-                                     let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-                                         // Handle OK action if needed
-                                     }
-                                     noSignalAlertController.addAction(okAction)
-
-                                     self.present(noSignalAlertController, animated: true) {
-                                         timer.invalidate() // Invalidate the timer to prevent repeated presentation
-                                     }
-                                 }
-                            }
                         }
+                    }
+                    if beaconDetected == false
+                    {
+                        //No Signal alert
+                        Timer.scheduledTimer(withTimeInterval: timeOutInterval, repeats: false) { [weak self] timer in
+                             guard let self = self else { return }
+
+                             let noSignalAlertController = UIAlertController(title: "No Bluetooth Signal Detected",
+                                                                           message:
+                                                                        "No device detected. Please ensure your bluetooth is enabled. " +
+                                                                        "You can report a faulty device, or manually add the device without the telemetry data.",
+                                                                           preferredStyle: .alert)
+                             let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                                 // Handle OK action if needed
+                             }
+                             noSignalAlertController.addAction(okAction)
+
+                             self.present(noSignalAlertController, animated: true) {
+                                 timer.invalidate() // Invalidate the timer to prevent repeated presentation
+                             }
+                         }
                     }
                 }
             }

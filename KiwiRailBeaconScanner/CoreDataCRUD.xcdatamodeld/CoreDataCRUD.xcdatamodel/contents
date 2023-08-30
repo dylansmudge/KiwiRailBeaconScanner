@@ -3,8 +3,8 @@
     <entity name="Beacon" representedClassName=".Beacon" syncable="YES">
         <attribute name="instance" optional="YES" attributeType="String"/>
         <attribute name="namespace" attributeType="String"/>
-        <attribute name="temperature" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="temperature" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="time" optional="YES" attributeType="String"/>
-        <attribute name="voltage" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="voltage" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
 </model>
