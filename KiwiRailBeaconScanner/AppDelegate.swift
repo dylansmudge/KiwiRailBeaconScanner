@@ -24,8 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-
+        // Assign the scene delegate
+        if #available(iOS 13.0, *) {
+            // Use the scene delegate to configure your app's initial state.
+        } else {
+            // Fallback for older iOS versions.
+        }
         return true
     }
 

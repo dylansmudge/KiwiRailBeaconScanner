@@ -1,0 +1,31 @@
+//
+//  BeaconsTableCellViewController.swift
+//  KRBeacon
+//
+//  Created by Dylan Carlyle on 6/09/23.
+//  Copyright © 2023 SmudgeApps. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+
+protocol CustomTableViewCellDelegate: AnyObject {
+    func didSelectCell(_ cell: BeaconsTableCellViewController)
+}
+
+class BeaconsTableCellViewController: UITableViewCell {
+    @IBOutlet weak var titleLabel: UILabel!
+
+    weak var delegate: CustomTableViewCellDelegate?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+    
+    @IBAction func cellButtonTapped(_ sender: UIButton) {
+        delegate?.didSelectCell(self)
+    }
+
+}

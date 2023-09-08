@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sPG-g0-Q2K">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -39,15 +39,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Voltage:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Omy-Fm-49H">
-                                        <rect key="frame" x="9" y="171" width="63" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePt-BO-y7h">
-                                        <rect key="frame" x="151" y="171" width="220" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Battery:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Omy-Fm-49H">
+                                        <rect key="frame" x="9" y="171" width="60" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -95,55 +88,70 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleAspectFit" id="Byl-Nb-fnY" customClass="LevelView" customModule="KRBeacon" customModuleProvider="target">
+                                        <rect key="frame" x="152" y="171" width="220" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcz-qR-ZY3">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11v-ia-ywG">
+                                <rect key="frame" x="116" y="444" width="160" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Refresh" image="arrow.clockwise.circle" catalog="system"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise.circle" catalog="system" title="Refresh"/>
+                                <connections>
+                                    <action selector="refreshButtonSelected:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="r1g-8y-swu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrT-Ey-fGE">
+                                <rect key="frame" x="116" y="487" width="160" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.down" catalog="system" title="Save"/>
+                                <connections>
+                                    <action selector="saveButtonSelected:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="hQB-rf-b0j"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcz-qR-ZY3">
                                 <rect key="frame" x="116" y="530" width="160" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="exclamationmark.triangle" catalog="system" title="Report Fault">
-                                    <color key="baseBackgroundColor" systemColor="systemRedColor"/>
+                                <buttonConfiguration key="configuration" style="plain" image="exclamationmark.triangle" catalog="system" title="Report Fault">
+                                    <color key="baseForegroundColor" systemColor="systemRedColor"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="reportFaultButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="CZz-AS-6jT"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11v-ia-ywG">
-                                <rect key="frame" x="116" y="444" width="160" height="35"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Zk9-hl-WOO">
+                                <rect key="frame" x="186" y="403" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="arrow.clockwise.circle" catalog="system" title="Refresh"/>
-                                <connections>
-                                    <action selector="refreshButtonSelected:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="r1g-8y-swu"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrT-Ey-fGE">
-                                <rect key="frame" x="116" y="487" width="160" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="square.and.arrow.down" catalog="system" title="Save"/>
-                            </button>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="xoX-AA-0cT"/>
+                    <size key="freeformSize" width="393" height="852"/>
                     <connections>
+                        <outlet property="batteryView" destination="Byl-Nb-fnY" id="oMh-Tw-wAc"/>
                         <outlet property="beaconView" destination="4ka-eH-xzo" id="ckh-mj-yAi"/>
                         <outlet property="instanceLabel" destination="cMA-v8-7k8" id="QPs-v1-6Oh"/>
+                        <outlet property="loadingSymbol" destination="Zk9-hl-WOO" id="ONB-MF-0sP"/>
                         <outlet property="manuallyAddButton" destination="vrT-Ey-fGE" id="fJQ-q9-Jw0"/>
                         <outlet property="nameSpaceLabel" destination="ThF-Ng-mAH" id="q4Y-SX-bQn"/>
                         <outlet property="refreshButton" destination="11v-ia-ywG" id="YcY-NX-IcF"/>
                         <outlet property="reportFaultButton" destination="fcz-qR-ZY3" id="cdd-IA-GM4"/>
                         <outlet property="temperatureLabel" destination="6i8-ji-pUg" id="x2a-Tn-mgA"/>
                         <outlet property="timeLabel" destination="xBr-11-gYZ" id="iau-vh-C6K"/>
-                        <outlet property="voltageLabel" destination="ePt-BO-y7h" id="Pi4-oK-t7W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2403.8167938931297" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="764" y="23"/>
         </scene>
         <!--Scan For Beacons-->
         <scene sceneID="VK7-74-yyz">
@@ -174,25 +182,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h2G-5R-twH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1135" y="53"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="u5z-IP-XPv">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Qah-HI-fwC" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WtX-79-RS4">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="rL8-vj-PQV"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EuC-Sg-qQI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1014.5038167938931" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="-208.3969465648855" y="52.816901408450704"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ojd-H2-cEV">
@@ -210,7 +200,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K2Q-rP-kH7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2062" y="53"/>
+            <point key="canvasLocation" x="-1136.6412213740457" y="52.816901408450704"/>
         </scene>
     </scenes>
     <resources>
